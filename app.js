@@ -1,5 +1,6 @@
 const items = document.querySelectorAll(".item")
 const scoreTable = document.querySelector(".scoreTable")
+const finalColumn = document.querySelector("[data-final-column]")
 const SELECTIONS = [
     {
         name: "rock",
@@ -29,20 +30,33 @@ items.forEach(item => {
         // console.log(pcSelected)
         const iWin = isWinner (selectedObject,pcSelected)
         const pcWins = isWinner(pcSelected,selectedObject)
-        const div = document.createElement("div")
-        if(iWin){
-            div.innerText = `${selectedObject.name} beats ${pcSelected.name}! You Win!`
-            scoreTable.after(div)
-        }
-        else if(pcWins){
-            div.innerText = `${pcSelected.name} beats ${selectedObject.name}! PC Wins!`
-            scoreTable.after(div) }
-        else{
-            div.innerText = `You made the same selection! DRAW!`
-            scoreTable.after(div) }
-
+        
+        addSelectionResult(pcSelected, pcWins)
+        addSelectionResult(selectedObject, iWin)
+        
+        scoreUpdate(iWin,pcWins)
     })
 })
+
+function scoreUpdate(iWin, pcWins){
+    const span = document.querySelectorAll("span")
+    if(iWin){
+        
+        span[0].innerText = 1+parseInt(span[0].innerText)
+    }
+    else if(pcWins){
+        span[1].innerText = 1+parseInt(span[1].innerText)
+    }
+}
+function addSelectionResult(selection, winner){
+    const div = document.createElement(`div`);
+    finalColumn.after(div)
+    div.classList.add("selection")
+    div.innerText = selection.emoji
+        if(winner){
+            div.classList.add("winner")
+    }
+}
 
 function pcSelection(){
     const randomNumber = Math.floor(Math.random() * SELECTIONS.length)
