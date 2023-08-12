@@ -30,7 +30,7 @@ The Rock-Paper-Scissors Game is a browser-based game where players can select ro
 1. Clone this repository to your local machine (if you haven't already):
 
 ```bash
-git clone https://github.com/your-username/rock-paper-scissors.git
+git clone https://github.com/batuhancam/rock-paper-scissors.git
 ```
 
 2. Open the `index.html` file in a web browser.
